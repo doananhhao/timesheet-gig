@@ -1,5 +1,6 @@
 body {
-    min-width: 800px;
+    min-width: 760px;
+    font-size: 12px;
 }
 
 #issuetable {

@@ -1,21 +1,21 @@
 getDisplayIssuseHtml = (obj) => {
   let html = "";
 
-  if (obj.parent) {
+  if (obj.fields.parent) {
     html = `
 			<span style="color:#666">
-				<a href="${getIssueUrl(obj.parent.key)}"
-					title="${obj.parent.fields.summary}"
+				<a href="${getIssueUrl(obj.fields.parent.key)}"
+					title="${obj.fields.parent.fields.summary}"
 					style="color:#666 !important">
-					<s>${obj.parent.key}</s>
+					<i>${obj.fields.parent.key}</i>
 				</a> /
 			</span>
 		`;
   }
 
   return `${html}
-		<a href="https://agile.qasymphony.com/browse/MR-5449">
-			Planning and Meeting
+		<a href="${getIssueUrl(obj.key)}">
+			${obj.fields.summary}
 		</a>
 	`;
 };
@@ -35,11 +35,11 @@ createElement = (obj) => {
 				</a>
 			</td>
 			<td width="1%" class="issuekey">
-				${getDisplayIssuseHtml(obj)}
+				${obj.key}
 			</td>
 			<td width="100%">
 				<a href="${getIssueUrl(obj.key)}">
-					${obj.fields.summary}
+					${getDisplayIssuseHtml(obj)}
 				</a>
 			</td>
 			<td>1h</td>

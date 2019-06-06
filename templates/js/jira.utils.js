@@ -26,6 +26,8 @@
         method: 'GET',
         credentials: 'same-origin',
         headers: header
+      }).then(res => {
+        return res.json();
       });
     }
   }
