@@ -16,3 +16,15 @@ body {
 #issuetable .issuekey {
     white-space: nowrap;
 }
+
+#issuetable .date {
+    background-color: beige;
+}
+
+#issuetable .day {
+    min-width: 28px;
+}
+
+#issuetable .day:hover {
+    background-color: rgba(0, 191, 255, 0.6);
+}
