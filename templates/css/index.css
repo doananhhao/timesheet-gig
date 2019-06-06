@@ -1,0 +1,17 @@
+body {
+    min-width: 800px;
+}
+
+#issuetable {
+    border-bottom: 1px solid #ccc;
+    padding: 5px 7px;
+}
+
+#issuetable tbody tr td {
+    border-bottom: 1px solid #ccc;
+    padding: 5px 7px;
+}
+
+#issuetable .issuekey {
+    white-space: nowrap;
+}
