@@ -12,8 +12,14 @@
 <body>
 
     <div class="container">
-        
+        <div class="form-group">
+          <label for=""></label>
+          <input type="text"
+            class="form-control" name="" id="jiraUrl" aria-describedby="helpId" placeholder="Please input Jira Url here!" style="width: 25em">
+        </div>
     </div>
+
+    <div id="test"></div>
 
     <!--  -->
     <script src="js/jquery-3.2.1.slim.min.js"></script>
@@ -21,5 +27,11 @@
     <script src="js/popper.min.js"></script>
     <script src="js/index.js"></script>
 </body>
+
+<script>
+    $(document).ready(function () {
+        document.getElementById('test').innerHTML = 'ABC';
+    });
+</script>
 
 </html>
