@@ -14,18 +14,20 @@ jiraUrlInput.onkeydown = (event) => {
   if (event.key === "Enter") {
     window.jiraUtils.getJiraProjects().then((res) => {
       for (let i = 0; i < res.length; i++) {
-        jiraProjectOption.options[i] = new Option(res[i].name, res[i].key);
+        jiraProjectOption.options[i + 1] = new Option(res[i].name, res[i].key);
       }
+      jiraProjectOption.disabled = false;
     })
   }
 };
 
 jiraProjectOption.onchange = (event) => {
-  chrome.storage.local.set({ 'jiraUrl': jiraUrlInput.value, 'projectKey': event.currentTarget.options[event.currentTarget.selectedIndex].value }, loadJiraWorkLogGrid());
+  chrome.storage.local.set({ 'jiraUrl': jiraUrlInput.value,}, loadJiraWorkLogGrid(event.currentTarget.options[event.currentTarget.selectedIndex].value));
 }
 
-loadJiraWorkLogGrid = () => {
+loadJiraWorkLogGrid = (projectKey) => {
   let jiraUrlContainer = document.getElementById("jiraUrlContainer");
+  window.projectKey=projectKey;
   document.getElementById("container").removeChild(jiraUrlContainer);
   window.jiraUtils.checkLogin().then((res) => {
 		window.userInfo = res;
@@ -41,7 +43,7 @@ loadJiraWorkLogGrid = () => {
 
 initElement = () => {
 	document.getElementById("user").innerText += ` ${window.userInfo.displayName}`;
-  window.jiraUtils.getJiraIssues().then((res) => {
+  window.jiraUtils.getJiraIssues(window.projectKey).then((res) => {
     res.issues.forEach(issue => {
       createElement(issue);
     })
