@@ -35,6 +35,6 @@ initElement = () => {
   window.jiraUtils.getJiraIssues().then((res) => {
     res.issues.forEach(issue => {
       createElement(issue);
-    });
+    })
   });
 }

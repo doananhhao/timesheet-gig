@@ -82,25 +82,31 @@ createElement = (obj) => {
 				</a>
 			</td>
       <td class="date day">
-        ${getDisplayLogedDayHtml(displayWorkLog.mon)}
+        ${getDisplayLogedDayHtml(displayWorkLog.mon, obj)}
       </td>
       <td class="day">
-        ${getDisplayLogedDayHtml(displayWorkLog.tue)}
+        ${getDisplayLogedDayHtml(displayWorkLog.tue, obj)}
       </td>
       <td class="date day">
-        ${getDisplayLogedDayHtml(displayWorkLog.wed)}
+        ${getDisplayLogedDayHtml(displayWorkLog.wed, obj)}
       </td>
       <td class="day">
-        ${getDisplayLogedDayHtml(displayWorkLog.thu)}
+        ${getDisplayLogedDayHtml(displayWorkLog.thu, obj)}
       </td>
       <td class="date day">
-        ${getDisplayLogedDayHtml(displayWorkLog.fri)}
+        ${getDisplayLogedDayHtml(displayWorkLog.fri, obj)}
       </td>
-		</tr>`;
+    </tr>`;
+    
+  document.querySelectorAll("#issuetableBody input").forEach(element => {
+    element.addEventListener("click", function(event) {
+      console.log(event.target.getAttribute("data-obj"));
+    });
+  });
 };
 
-getDisplayLogedDayHtml = (hours) => {
-  return `<input type="text" value="${hours != 0 ? hours + "h" : ""}" title="Add more hours" disabled>`;
+getDisplayLogedDayHtml = (hours, obj) => {
+  return `<input type="text" data-obj="${obj}" value="${hours != 0 ? hours + "h" : ""}" title="Add more hours">`;
 };
 
 getCurrentDateOfWeek = (noDay) => {
