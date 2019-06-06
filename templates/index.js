@@ -34,7 +34,7 @@ loadJiraWorkLogGrid = () => {
 
 initElement = () => {
   window.jiraUtils.getJiraIssues().then((res) => {
-    res.issues.array.forEach(issue => {
+    res.issues.forEach(issue => {
       createElement(issue);
     });
   });
