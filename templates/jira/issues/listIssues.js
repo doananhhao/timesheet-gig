@@ -125,13 +125,13 @@ createElement = (obj) => {
     </tr>`;
     
   document.querySelectorAll("#issuetableBody input").forEach(element => {
-    element.addEventListener("keydown", function(event) {
+    element.addEventListener("keyup", function(event) {
 			if (event.key == "Enter") {
 				console.log(event.target.getAttribute("data-key"));
 				console.log(event.target.getAttribute("data-hours"));
 				console.log(event.target.getAttribute("data-date"));
 				let key = event.target.getAttribute("data-key");
-				let hours = event.target.getAttribute("value");
+				let hours = event.target.value;
 				hours = hours.substring(0, hours.length - 1) * 3600;
 				let date = parseDateCustom(new Date(event.target.getAttribute("data-date")));
 				window.jiraUtils.pushJiraWorklog(key, date, hours);
