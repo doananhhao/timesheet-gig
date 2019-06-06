@@ -34,8 +34,8 @@ getDaysToDisplay = (worklog) => {
 	};
 	
 	currentUserWorkLogs.forEach(workLog => {
-		let currentMonday = getCurrentDateOfWeek(1);
-		let currentSatDay = getCurrentDateOfWeek(6);
+		let currentMonday = getCurrentDateOfWeek(1).setHours(0, 0, 0);
+		let currentSatDay = getCurrentDateOfWeek(6).setHours(0, 0, 0);
 		let logworkDate = new Date(workLog.started);
 		if (logworkDate < currentMonday || logworkDate > currentSatDay) {
       return;
@@ -82,31 +82,35 @@ createElement = (obj) => {
 				</a>
 			</td>
       <td class="date day">
-        ${getDisplayLogedDayHtml(displayWorkLog.mon, obj)}
+        ${getDisplayLogedDayHtml(displayWorkLog.mon, obj.key, 1)}
       </td>
       <td class="day">
-        ${getDisplayLogedDayHtml(displayWorkLog.tue, obj)}
+        ${getDisplayLogedDayHtml(displayWorkLog.tue, obj.key, 2)}
       </td>
       <td class="date day">
-        ${getDisplayLogedDayHtml(displayWorkLog.wed, obj)}
+        ${getDisplayLogedDayHtml(displayWorkLog.wed, obj.key, 3)}
       </td>
       <td class="day">
-        ${getDisplayLogedDayHtml(displayWorkLog.thu, obj)}
+        ${getDisplayLogedDayHtml(displayWorkLog.thu, obj.key, 4)}
       </td>
       <td class="date day">
-        ${getDisplayLogedDayHtml(displayWorkLog.fri, obj)}
+        ${getDisplayLogedDayHtml(displayWorkLog.fri, obj.key, 5)}
       </td>
     </tr>`;
     
   document.querySelectorAll("#issuetableBody input").forEach(element => {
     element.addEventListener("click", function(event) {
-      console.log(event.target.getAttribute("data-obj"));
+      console.log(event.target.getAttribute("data-key"));
+      console.log(event.target.getAttribute("data-hours"));
+      console.log(event.target.getAttribute("data-date"));
     });
   });
 };
 
-getDisplayLogedDayHtml = (hours, obj) => {
-  return `<input type="text" data-obj="${obj}" value="${hours != 0 ? hours + "h" : ""}" title="Add more hours">`;
+getDisplayLogedDayHtml = (hours, key, day) => {
+  return `<input type="text" data-key="${key}" data-hours="${hours}" data-date="${getCurrentDateOfWeek(day)}" value="${
+    hours != 0 ? hours + "h" : ""
+  }" title="Add more hours">`;
 };
 
 getCurrentDateOfWeek = (noDay) => {
@@ -116,7 +120,5 @@ getCurrentDateOfWeek = (noDay) => {
   d = new Date();
   var day = d.getDay(),
 		diff = d.getDate() - day + (day == 0 ? -6 : noDay);
-	let result = new Date(d.setDate(diff));
-	result.setHours(0, 0, 0);
-  return result;
+  return new Date(d.setDate(diff));
 }
