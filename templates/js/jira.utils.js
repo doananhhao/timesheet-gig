@@ -31,7 +31,7 @@
       });
     },
 
-    pushJiraWorklog: (worklog, issueKey) => {
+    pushJiraWorklog: (issueKey, started, timeSpentSeconds) => {
       let header = {
         "Content-type": "application/json",
         "X-Atlassian-Token": "no-check",
@@ -41,7 +41,7 @@
         method: 'POST',
         credentials: 'same-origin',
         headers: header,
-        body: JSON.stringify({started: worklog.started, timeSpentSeconds: worklog.timeSpentSeconds})
+        body: JSON.stringify({"started": started, "timeSpentSeconds": timeSpentSeconds})
       }).then(res => {
         return res.json();
       });
