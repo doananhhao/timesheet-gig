@@ -25,6 +25,15 @@ body {
     min-width: 28px;
 }
 
+#issuetable input {
+    max-width: 24px;
+}
+
+#issuetable input:disabled {
+    background: transparent;
+    border: none;
+}
+
 #issuetable .day:hover {
     background-color: rgba(0, 191, 255, 0.6);
 }

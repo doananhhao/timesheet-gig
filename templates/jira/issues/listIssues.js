@@ -81,12 +81,26 @@ createElement = (obj) => {
 					${getDisplayIssuseHtml(obj)}
 				</a>
 			</td>
-			<td class="date day">${displayWorkLog.mon != 0 ? displayWorkLog.mon + "h" : ""}</td>
-			<td class="day">${displayWorkLog.tue != 0 ? displayWorkLog.tue + "h" : ""}</td>
-			<td class="date day">${displayWorkLog.wed != 0 ? displayWorkLog.wed + "h" : ""}</td>
-			<td class="day">${displayWorkLog.thu != 0 ? displayWorkLog.thu + "h" : ""}</td>
-			<td class="date day">${displayWorkLog.fri != 0 ? displayWorkLog.fri + "h" : ""}</td>
+      <td class="date day">
+        ${getDisplayLogedDayHtml(displayWorkLog.mon)}
+      </td>
+      <td class="day">
+        ${getDisplayLogedDayHtml(displayWorkLog.tue)}
+      </td>
+      <td class="date day">
+        ${getDisplayLogedDayHtml(displayWorkLog.wed)}
+      </td>
+      <td class="day">
+        ${getDisplayLogedDayHtml(displayWorkLog.thu)}
+      </td>
+      <td class="date day">
+        ${getDisplayLogedDayHtml(displayWorkLog.fri)}
+      </td>
 		</tr>`;
+};
+
+getDisplayLogedDayHtml = (hours) => {
+  return `<input type="text" value="${hours != 0 ? hours + "h" : ""}" title="Add more hours" disabled>`;
 };
 
 getCurrentDateOfWeek = (noDay) => {
