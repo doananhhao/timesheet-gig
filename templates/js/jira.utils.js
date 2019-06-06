@@ -45,6 +45,21 @@
       }).then(res => {
         return res.json();
       });
+    },
+    
+    getJiraProjects : () => {
+      let header = {
+        "Content-type": "application/json",
+        "X-Atlassian-Token": "no-check",
+        "Access-Control-Allow-Origin": "*"
+      };
+      return fetch(window.jiraUrl + '/rest/api/2/project', {
+        method: 'GET',
+        credentials: 'same-origin',
+        headers: header
+      }).then(res => {
+        return res.json();
+      });
     }
   }
 }(window);
