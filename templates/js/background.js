@@ -9,5 +9,5 @@ chrome.browserAction.onClicked.addListeneer(function(tab) {
                 jiraUrlInput.value = result.key;
             }
         });
-    });e
+    });
   });
